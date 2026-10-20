@@ -1,2446 +1,866 @@
-```html
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="violet">
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Pranjal Gupta | Developer Portfolio</title>
-
-    <meta name="description"
-        content="Portfolio of Pranjal Gupta - Programmer, Developer and Technology Enthusiast.">
-
-    <style>
-
-        /* =========================================================
-           GLOBAL
-        ========================================================= */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        :root {
-            --bg: #05080d;
-            --bg2: #080d14;
-            --card: #0b1119;
-            --card2: #0e1620;
-            --border: #1b2a3a;
-            --text: #edf4f8;
-            --muted: #8998a8;
-            --green: #00ff9d;
-            --blue: #00b7ff;
-            --purple: #9d6cff;
-        }
-
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ::selection {
-            background: var(--green);
-            color: #000;
-        }
-
-        /* =========================================================
-           BACKGROUND
-        ========================================================= */
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-
-            background-image:
-                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-
-            background-size: 45px 45px;
-        }
-
-        /* =========================================================
-           NAVBAR
-        ========================================================= */
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-
-            padding: 18px 7%;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            background: rgba(5, 8, 13, 0.78);
-            backdrop-filter: blur(15px);
-
-            border-bottom: 1px solid var(--border);
-
-            z-index: 1000;
-        }
-
-        .logo {
-            font-family: monospace;
-            font-size: 21px;
-            font-weight: bold;
-            color: var(--green);
-        }
-
-        .logo span {
-            color: var(--text);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 28px;
-        }
-
-        nav ul li a {
-            color: var(--muted);
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: var(--green);
-        }
-
-        /* =========================================================
-           GENERAL SECTIONS
-        ========================================================= */
-
-        section {
-            padding: 110px 8%;
-        }
-
-        .section-heading {
-            text-align: center;
-            margin-bottom: 65px;
-        }
-
-        .section-heading .small {
-            font-family: monospace;
-            color: var(--green);
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .section-heading h2 {
-            font-size: clamp(32px, 5vw, 48px);
-        }
-
-        .section-heading h2 span {
-            color: var(--green);
-        }
-
-        .section-heading p {
-            color: var(--muted);
-            margin-top: 12px;
-        }
-
-        /* =========================================================
-           HERO
-        ========================================================= */
-
-        .hero {
-            min-height: 100vh;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            text-align: center;
-
-            padding-top: 130px;
-
-            background:
-                radial-gradient(
-                    circle at 50% 35%,
-                    rgba(0,255,157,0.09),
-                    transparent 35%
-                );
-        }
-
-        .hero-content {
-            max-width: 950px;
-        }
-
-        .status {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-
-            padding: 8px 15px;
-
-            border: 1px solid var(--border);
-            border-radius: 30px;
-
-            background: rgba(10,18,27,0.7);
-
-            color: var(--muted);
-
-            font-family: monospace;
-            font-size: 13px;
-
-            margin-bottom: 25px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 12px var(--green);
-        }
-
-        .hero h1 {
-            font-size: clamp(50px, 9vw, 100px);
-            line-height: 1;
-
-            margin-bottom: 25px;
-        }
-
-        .hero h1 span {
-            color: var(--green);
-        }
-
-        .hero .subtitle {
-            font-size: clamp(18px, 3vw, 25px);
-            color: var(--muted);
-            margin-bottom: 15px;
-        }
-
-        .hero-description {
-            max-width: 700px;
-            margin: auto;
-
-            color: #718091;
-            line-height: 1.8;
-            font-size: 16px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-
-            gap: 15px;
-
-            margin-top: 35px;
-        }
-
-        .btn {
-            padding: 13px 24px;
-
-            border-radius: 7px;
-
-            font-weight: 600;
-            font-size: 14px;
-
-            transition: 0.3s;
-        }
-
-        .btn-primary {
-            background: var(--green);
-            color: #031008;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 0 30px rgba(0,255,157,0.25);
-        }
-
-        .btn-outline {
-            border: 1px solid var(--border);
-            color: var(--text);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--green);
-            color: var(--green);
-            transform: translateY(-4px);
-        }
-
-        /* =========================================================
-           TERMINAL
-        ========================================================= */
-
-        .terminal-box {
-            max-width: 750px;
-            margin: 70px auto 0;
-
-            background: #070b10;
-
-            border: 1px solid var(--border);
-            border-radius: 10px;
-
-            overflow: hidden;
-
-            text-align: left;
-
-            box-shadow: 0 20px 70px rgba(0,0,0,0.35);
-        }
-
-        .terminal-header {
-            padding: 12px 15px;
-
-            border-bottom: 1px solid var(--border);
-
-            display: flex;
-            align-items: center;
-            gap: 7px;
-        }
-
-        .terminal-circle {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #394554;
-        }
-
-        .terminal-title {
-            margin-left: 8px;
-            color: #667586;
-            font-size: 12px;
-            font-family: monospace;
-        }
-
-        .terminal-content {
-            padding: 22px;
-
-            font-family: monospace;
-            line-height: 2;
-
-            color: #9baaba;
-            font-size: 14px;
-        }
-
-        .terminal-green {
-            color: var(--green);
-        }
-
-        /* =========================================================
-           ABOUT
-        ========================================================= */
-
-        .about-grid {
-            max-width: 1100px;
-            margin: auto;
-
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-
-            gap: 35px;
-        }
-
-        .about-text,
-        .info-card {
-            background: var(--card);
-
-            border: 1px solid var(--border);
-            border-radius: 12px;
-
-            padding: 30px;
-        }
-
-        .about-text h3 {
-            font-size: 26px;
-            margin-bottom: 20px;
-        }
-
-        .about-text h3 span {
-            color: var(--green);
-        }
-
-        .about-text p {
-            color: var(--muted);
-            line-height: 1.9;
-            margin-bottom: 15px;
-        }
-
-        .info-list {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .info-item {
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .info-item:last-child {
-            border-bottom: none;
-        }
-
-        .info-item small {
-            color: #607083;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .info-item strong {
-            color: #dce5ec;
-        }
-
-        /* =========================================================
-           INTERESTS
-        ========================================================= */
-
-        .interest-grid {
-            max-width: 1100px;
-            margin: auto;
-
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-
-            gap: 20px;
-        }
-
-        .interest-card {
-            padding: 28px 20px;
-
-            text-align: center;
-
-            background: var(--card);
-
-            border: 1px solid var(--border);
-            border-radius: 12px;
-
-            transition: 0.3s;
-        }
-
-        .interest-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--green);
-        }
-
-        .interest-icon {
-            font-size: 30px;
-            margin-bottom: 15px;
-        }
-
-        .interest-card h3 {
-            margin-bottom: 8px;
-        }
-
-        .interest-card p {
-            color: var(--muted);
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        /* =========================================================
-           SKILLS
-        ========================================================= */
-
-        .skills-wrapper {
-            max-width: 1100px;
-            margin: auto;
-
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-
-            gap: 25px;
-        }
-
-        .skill-box {
-            background: var(--card);
-
-            border: 1px solid var(--border);
-            border-radius: 12px;
-
-            padding: 28px;
-        }
-
-        .skill-box h3 {
-            margin-bottom: 22px;
-            color: var(--green);
-        }
-
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            padding: 9px 14px;
-
-            border: 1px solid #203143;
-            border-radius: 6px;
-
-            background: #0a1018;
-
-            color: #aebac7;
-
-            font-family: monospace;
-            font-size: 13px;
-
-            transition: 0.3s;
-        }
-
-        .skill-tag:hover {
-            border-color: var(--green);
-            color: var(--green);
-        }
-
-        /* =========================================================
-           LEARNING
-        ========================================================= */
-
-        .learning-container {
-            max-width: 950px;
-            margin: auto;
-        }
-
-        .learning-item {
-            position: relative;
-
-            padding: 25px 30px 25px 60px;
-
-            margin-bottom: 20px;
-
-            background: var(--card);
-
-            border: 1px solid var(--border);
-            border-radius: 10px;
-        }
-
-        .learning-item::before {
-            content: "";
-
-            position: absolute;
-
-            left: 25px;
-            top: 30px;
-
-            width: 12px;
-            height: 12px;
-
-            border: 2px solid var(--green);
-            border-radius: 50%;
-
-            background: var(--bg);
-        }
-
-        .learning-item h3 {
-            margin-bottom: 8px;
-        }
-
-        .learning-item p {
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        /* =========================================================
-           PROJECTS
-        ========================================================= */
-
-        .projects {
-            max-width: 1200px;
-            margin: auto;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(280px, 1fr));
-
-            gap: 25px;
-        }
-
-        .project-card {
-            position: relative;
-
-            min-height: 300px;
-
-            padding: 28px;
-
-            display: flex;
-            flex-direction: column;
-
-            background: var(--card);
-
-            border: 1px solid var(--border);
-            border-radius: 12px;
-
-            transition: 0.35s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--green);
-
-            box-shadow:
-                0 15px 45px rgba(0,0,0,0.35);
-        }
-
-        .project-number {
-            color: var(--green);
-
-            font-family: monospace;
-            font-size: 13px;
-
-            margin-bottom: 20px;
-        }
-
-        .project-card h3 {
-            font-size: 22px;
-            margin-bottom: 13px;
-        }
-
-        .project-card p {
-            color: var(--muted);
-            line-height: 1.7;
-            font-size: 14px;
-
-            flex-grow: 1;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-
-            gap: 7px;
-
-            margin: 20px 0;
-        }
-
-        .project-tech span {
-            padding: 5px 9px;
-
-            background: #111a24;
-
-            border: 1px solid #203143;
-
-            border-radius: 4px;
-
-            color: #8393a4;
-
-            font-family: monospace;
-            font-size: 11px;
-        }
-
-        .project-link {
-            color: var(--green);
-
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .project-link:hover {
-            text-decoration: underline;
-        }
-
-        /* =========================================================
-           GITHUB / DEVELOPMENT
-        ========================================================= */
-
-        .dev-section {
-            max-width: 1100px;
-            margin: auto;
-
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-
-            gap: 25px;
-        }
-
-        .dev-card {
-            background: var(--card);
-
-            border: 1px solid var(--border);
-            border-radius: 12px;
-
-            padding: 30px;
-        }
-
-        .dev-card h3 {
-            margin-bottom: 15px;
-        }
-
-        .dev-card p {
-            color: var(--muted);
-            line-height: 1.8;
-        }
-
-        /* =========================================================
-           ACADEMICS
-        ========================================================= */
-
-        .academic-container {
-            max-width: 950px;
-            margin: auto;
-
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-
-            background: var(--card);
-
-            border: 1px solid var(--border);
-        }
-
-        th,
-        td {
-            padding: 18px;
-
-            border: 1px solid var(--border);
-
-            text-align: center;
-        }
-
-        th {
-            color: var(--green);
-            background: #0d151f;
-            font-family: monospace;
-        }
-
-        td {
-            color: var(--muted);
-        }
-
-        /* =========================================================
-           EDUCATION
-        ========================================================= */
-
-        .education {
-            max-width: 900px;
-            margin: auto;
-        }
-
-        .education-card {
-            background: var(--card);
-
-            border: 1px solid var(--border);
-
-            border-left: 3px solid var(--green);
-
-            padding: 28px;
-
-            margin-bottom: 20px;
-
-            border-radius: 0 10px 10px 0;
-        }
-
-        .education-card h3 {
-            margin-bottom: 8px;
-        }
-
-        .education-card .year {
-            color: var(--green);
-
-            font-family: monospace;
-
-            font-size: 13px;
-
-            margin-bottom: 12px;
-        }
-
-        .education-card p {
-            color: var(--muted);
-            line-height: 1.7;
-        }
-
-        /* =========================================================
-           GOALS
-        ========================================================= */
-
-        .goals {
-            max-width: 1000px;
-            margin: auto;
-
-            display: grid;
-
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 20px;
-        }
-
-        .goal {
-            background: var(--card);
-
-            border: 1px solid var(--border);
-
-            border-radius: 12px;
-
-            padding: 30px;
-
-            transition: 0.3s;
-        }
-
-        .goal:hover {
-            border-color: var(--green);
-            transform: translateY(-5px);
-        }
-
-        .goal-number {
-            color: var(--green);
-
-            font-family: monospace;
-
-            margin-bottom: 15px;
-        }
-
-        .goal h3 {
-            margin-bottom: 10px;
-        }
-
-        .goal p {
-            color: var(--muted);
-            line-height: 1.7;
-            font-size: 14px;
-        }
-
-        /* =========================================================
-           CONTACT
-        ========================================================= */
-
-        .contact-box {
-            max-width: 850px;
-
-            margin: auto;
-
-            text-align: center;
-
-            padding: 60px 30px;
-
-            background: var(--card);
-
-            border: 1px solid var(--border);
-
-            border-radius: 15px;
-        }
-
-        .contact-box h2 {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .contact-box h2 span {
-            color: var(--green);
-        }
-
-        .contact-box p {
-            color: var(--muted);
-            line-height: 1.7;
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .social-links {
-            margin-top: 30px;
-
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-
-            gap: 12px;
-        }
-
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
-        footer {
-            padding: 30px 8%;
-
-            border-top: 1px solid var(--border);
-
-            text-align: center;
-
-            color: #536171;
-
-            font-size: 13px;
-        }
-
-        footer span {
-            color: var(--green);
-        }
-
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
-
-        @media(max-width: 900px) {
-
-            nav ul {
-                gap: 12px;
-            }
-
-            .about-grid,
-            .skills-wrapper,
-            .dev-section {
-                grid-template-columns: 1fr;
-            }
-
-            .interest-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .goals {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media(max-width: 600px) {
-
-            nav {
-                padding: 15px 5%;
-            }
-
-            nav ul {
-                display: none;
-            }
-
-            section {
-                padding: 80px 5%;
-            }
-
-            .interest-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 52px;
-            }
-
-            .contact-box h2 {
-                font-size: 30px;
-            }
-
-        }
-        .email-link {
-    display: inline-block;
-    margin-top: 25px;
-
-    color: var(--green);
-
-    font-family: monospace;
-    font-size: 15px;
-
-    transition: 0.3s;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pranjal Gupta | Developer Portfolio</title>
+<meta name="description" content="Portfolio of Pranjal Gupta - Programmer, Developer and Technology Enthusiast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#14121f; --panel:#1a1730; --side:#100e1a; --line:#2a2545; --hover:#241f3d;
+  --text:#e9e6f5; --muted:#8c86a8; --dim:#6c6690;
+  --coral:#ff6b81; --amber:#ffd166; --mint:#5eead4; --violet:#a78bfa; --sky:#60a5fa; --ink:#150f2b;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --head:"Bricolage Grotesque","Segoe UI",sans-serif;
 }
+[data-theme="matrix"]{--bg:#050f0a;--panel:#08170f;--side:#030a06;--line:#123223;--hover:#0c2417;--text:#d8ffe9;--muted:#6fa88a;--dim:#3f7a5c;--coral:#00e5a0;--amber:#b6ff3c;--mint:#00ff9d;--violet:#00d27a;--sky:#4dffc3;--ink:#00170c}
+[data-theme="sunset"]{--bg:#1b1015;--panel:#26151c;--side:#130a0f;--line:#432631;--hover:#33202a;--text:#fdebe6;--muted:#b08a90;--dim:#82606a;--coral:#ff5d73;--amber:#ffb347;--mint:#ffd08a;--violet:#ff8a5b;--sky:#ff9ec4;--ink:#2a0e0a}
+[data-theme="ice"]{--bg:#09131f;--panel:#0e1c2d;--side:#060d16;--line:#1c3350;--hover:#142840;--text:#e6f3ff;--muted:#7fa0c0;--dim:#56789a;--coral:#7dd3fc;--amber:#c4b5fd;--mint:#67e8f9;--violet:#38bdf8;--sky:#93c5fd;--ink:#031225}
 
-.email-link:hover {
-    text-shadow: 0 0 12px var(--green);
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;line-height:1.7;transition:background .4s}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+::selection{background:var(--violet);color:#000}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px}
+.app{display:flex;flex-direction:column;height:100vh}
+
+/* title bar */
+.titlebar{display:flex;align-items:center;gap:14px;padding:0 14px;height:40px;background:var(--side);border-bottom:1px solid var(--line);flex-shrink:0}
+.dots{display:flex;gap:7px}.dots i{width:12px;height:12px;border-radius:50%;background:var(--coral)}
+.dots i:nth-child(2){background:var(--amber)}.dots i:nth-child(3){background:var(--mint)}
+.ttl{flex:1;text-align:center;color:var(--muted);font-size:12.5px}
+.tb{border:1px solid var(--line);border-radius:6px;padding:3px 10px;font-size:12px;color:var(--muted);transition:.2s}
+.tb:hover{border-color:var(--violet);color:var(--text)}
+
+.body{display:flex;flex:1;min-height:0}
+
+/* explorer */
+.explorer{width:230px;flex-shrink:0;background:var(--side);border-right:1px solid var(--line);padding:14px 0;overflow-y:auto}
+.ex-t{padding:0 18px 10px;font-size:11px;letter-spacing:2px;color:var(--muted)}
+.folder{padding:2px 18px 8px;font-weight:600;font-size:13px}
+.file{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:6px 18px 6px 30px;color:var(--muted);font-size:13.5px;border-left:2px solid transparent;transition:.15s}
+.file:hover{background:var(--hover);color:var(--text)}
+.file.on{background:var(--hover);color:var(--text);border-left-color:var(--violet)}
+.file b{width:9px;height:9px;border-radius:3px;flex-shrink:0}
+.hint{margin:22px 18px 0;padding:12px;border:1px dashed var(--line);border-radius:10px;font-size:12px;color:var(--muted)}
+.hint kbd{color:var(--amber)}
+
+/* editor */
+.editor{flex:1;display:flex;flex-direction:column;min-width:0;background:var(--bg);position:relative}
+#glow{position:absolute;width:480px;height:480px;border-radius:50%;pointer-events:none;z-index:0;transform:translate(-50%,-50%);background:radial-gradient(circle,color-mix(in srgb,var(--violet) 16%,transparent),transparent 65%);left:60%;top:30%}
+.tabbar{display:flex;background:var(--side);border-bottom:1px solid var(--line);flex-shrink:0;position:relative;z-index:1}
+.tabs{display:flex;flex:1;overflow-x:auto}
+.tab{display:flex;align-items:center;gap:9px;padding:10px 16px;font-size:13px;color:var(--muted);border-right:1px solid var(--line);border-top:2px solid transparent;white-space:nowrap;cursor:pointer}
+.tab.on{background:var(--bg);color:var(--text);border-top-color:var(--violet)}
+.tab b{width:8px;height:8px;border-radius:2px}
+.tab .x{padding:0 3px;border-radius:4px;opacity:.5}.tab .x:hover{opacity:1;background:var(--hover)}
+.run{padding:0 18px;color:var(--mint);font-size:13px;font-weight:600;border-left:1px solid var(--line)}
+.run:hover{background:var(--hover)}
+.crumb{padding:8px 28px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);flex-shrink:0;position:relative;z-index:1}
+.views{flex:1;overflow-y:auto;position:relative;z-index:1}
+.view{display:none;padding:44px clamp(20px,5vw,64px) 80px;max-width:1120px}
+.view.on{display:block}
+.view.on>*{animation:up .55s both;animation-delay:calc(var(--i,0)*55ms)}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* syntax */
+.k{color:var(--violet)}.s{color:var(--mint)}.n{color:var(--amber)}.p{color:var(--sky)}.r{color:var(--coral)}
+.cm{color:var(--dim);margin-bottom:10px}
+h1,h2{font-family:var(--head);letter-spacing:-.03em;line-height:1}
+h1{font-size:clamp(48px,9vw,104px);font-weight:800}
+h2{font-size:clamp(34px,5vw,54px);font-weight:800;margin-bottom:26px}
+em{font-style:normal;background:linear-gradient(100deg,var(--coral),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent}
+p.lead{color:color-mix(in srgb,var(--text) 78%,transparent);font-size:15.5px;max-width:640px}
+.block{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 24px;white-space:pre-wrap;overflow-x:auto;line-height:1.9}
+.tag{display:inline-flex;align-items:center;gap:9px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12.5px;margin-bottom:26px}
+.live{width:8px;height:8px;border-radius:50%;background:var(--mint);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--mint) 60%,transparent)}70%,100%{box-shadow:0 0 0 9px transparent}}
+.typed{margin:22px 0 16px;font-size:18px;color:var(--amber);min-height:32px}
+.caret{display:inline-block;width:9px;height:1.1em;background:var(--amber);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{padding:12px 22px;border-radius:10px;font-weight:600;font-size:13.5px;border:1px solid var(--line);transition:.25s;display:inline-block}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--violet);border-color:var(--violet)}
+.btn.main{background:var(--amber);color:#1a1300;border-color:var(--amber)}
+.btn.main:hover{box-shadow:4px 4px 0 var(--coral)}
+.mt{margin-top:28px}
+
+/* cards */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;transition:.25s}
+.card:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--violet);border-color:var(--violet)}
+.card h3{font-family:var(--head);font-size:20px;margin-bottom:8px;letter-spacing:-.02em}
+.card p{color:var(--muted);font-size:13.5px}
+.ic{font-size:26px;margin-bottom:10px}
+
+/* home stats + launchpad */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:38px}
+.stat{padding:18px 20px}
+.stat .v{font-family:var(--head);font-size:40px;font-weight:800;line-height:1}
+.stat .l{font-size:11.5px;color:var(--muted);margin-top:6px;letter-spacing:1px}
+.launch{cursor:pointer;text-align:left;display:block;width:100%}
+.launch .ic{margin-bottom:8px}
+
+/* skills */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{padding:6px 13px;border-radius:7px;border:1px solid var(--line);background:var(--bg);font-size:12.5px;transition:.2s}
+.chip:hover{color:var(--mint);border-color:var(--mint);transform:translateY(-2px)}
+.chip.on{background:var(--mint);color:var(--ink);border-color:var(--mint);font-weight:600}
+#skillOut{margin-top:22px;min-height:92px}
+#skillOut .pl{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pill{padding:5px 12px;border-radius:999px;border:1px solid var(--amber);color:var(--amber);font-size:12px;transition:.2s}
+.pill:hover{background:var(--amber);color:#1a1300}
+
+/* learning */
+.todo{display:flex;gap:16px;align-items:flex-start;cursor:pointer}
+.box{flex-shrink:0;width:22px;height:22px;border:2px solid var(--mint);border-radius:6px;margin-top:3px;position:relative;transition:.2s}
+.box::after{content:"";position:absolute;inset:4px;background:var(--mint);border-radius:2px;opacity:.35;animation:pulse2 2s infinite}
+@keyframes pulse2{50%{opacity:.9}}
+.todo.done .box{background:var(--mint)}
+.todo.done .box::after{display:none}
+.todo.done h3{text-decoration:line-through;opacity:.6}
+
+/* projects */
+.ctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+#psearch{flex:1;min-width:200px;padding:11px 16px;background:var(--panel);border:1px solid var(--line);border-radius:10px;outline:none;transition:.2s}
+#psearch:focus{border-color:var(--violet)}
+select{padding:10px 12px;background:var(--panel);border:1px solid var(--line);border-radius:10px;outline:none}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.f{padding:7px 16px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:13px;transition:.2s}
+.f:hover{color:var(--text)}.f.on{background:var(--violet);border-color:var(--violet);color:var(--ink);font-weight:600}
+#pcount{color:var(--muted);font-size:12.5px;margin-bottom:16px}
+#pgrid{grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+#pgrid.list{grid-template-columns:1fr}
+.proj{display:flex;flex-direction:column}.proj.hide{display:none}
+.proj.flash{animation:flash 1.6s}
+@keyframes flash{0%,60%{box-shadow:0 0 0 3px var(--amber)}100%{box-shadow:none}}
+.pn{display:flex;justify-content:space-between;font-size:12px;color:var(--coral);margin-bottom:14px}
+.proj p{flex:1}
+.tech{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0}
+.tech span{font-size:11px;padding:3px 8px;border-radius:5px;background:var(--bg);border:1px solid var(--line);color:var(--sky)}
+.prow{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.plink{color:var(--amber);font-weight:600;font-size:13.5px}.plink:hover{text-decoration:underline}
+.clone{font-size:12px;padding:4px 10px;border:1px solid var(--line);border-radius:6px;color:var(--muted);transition:.2s}
+.clone:hover{color:var(--mint);border-color:var(--mint)}
+
+/* journey */
+.log{position:relative;padding-left:34px;max-width:760px}
+.log::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--violet),var(--coral))}
+.commit{position:relative;margin-bottom:22px;cursor:pointer}
+.commit::before{content:"";position:absolute;left:-34px;top:20px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:3px solid var(--violet);transition:.3s}
+.commit:hover::before{background:var(--violet)}
+.commit:last-child::before{border-color:var(--coral);background:var(--coral)}
+.hash{font-size:12px;color:var(--amber);margin-bottom:6px}
+.hash span{color:var(--mint);margin-left:8px}
+
+/* academics */
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{padding:15px 20px;text-align:left;border-bottom:1px solid var(--line)}
+th{color:var(--mint);font-size:12px;letter-spacing:1px;background:var(--side)}
+tr:last-child td{border-bottom:0}tr:hover td{background:var(--hover)}
+td:last-child{color:var(--amber);font-weight:600}
+.yr{color:var(--mint);font-size:12.5px;margin-bottom:8px}
+
+/* goals */
+.goal .num{font-family:var(--head);font-size:64px;font-weight:800;line-height:1;background:linear-gradient(100deg,var(--coral),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:12px}
+
+/* contact */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:6px;align-items:start}
+form.card{display:flex;flex-direction:column;gap:12px}
+form input,form textarea{width:100%;padding:12px 14px;background:var(--bg);border:1px solid var(--line);border-radius:10px;outline:none;resize:vertical}
+form input:focus,form textarea:focus{border-color:var(--violet)}
+.mail{display:inline-block;margin-top:22px;color:var(--mint);font-size:15px}.mail:hover{text-decoration:underline}
+
+/* terminal panel */
+#term{display:none;height:260px;flex-shrink:0;background:var(--side);border-top:1px solid var(--violet);flex-direction:column;position:relative;z-index:2}
+#term.on{display:flex}
+.th{display:flex;justify-content:space-between;padding:6px 16px;font-size:11.5px;letter-spacing:2px;color:var(--muted);border-bottom:1px solid var(--line)}
+.th button{color:var(--muted)}.th button:hover{color:var(--coral)}
+#tout{flex:1;overflow-y:auto;padding:10px 16px;font-size:13px;line-height:1.65;white-space:pre-wrap}
+#tout .o{margin-bottom:2px}
+#tout .lnk{color:var(--amber);cursor:pointer;text-decoration:underline}
+.tin{display:flex;gap:10px;padding:8px 16px 12px;border-top:1px solid var(--line)}
+.tin span{color:var(--mint)}
+#tinp{flex:1;background:transparent;border:0;outline:none}
+
+/* status bar */
+.status{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:0 6px;background:var(--violet);color:var(--ink);font-size:12px;font-weight:600;flex-shrink:0;white-space:nowrap;overflow:hidden;height:26px}
+.status .l{display:flex;gap:2px}
+.status button{padding:3px 10px;font-weight:600;color:var(--ink)}.status button:hover{background:rgba(0,0,0,.18)}
+.status .r{padding-right:10px;overflow:hidden;text-overflow:ellipsis}
+
+/* command palette */
+#pal{position:fixed;inset:0;background:rgba(3,2,8,.62);backdrop-filter:blur(4px);display:none;justify-content:center;align-items:flex-start;padding-top:14vh;z-index:50}
+#pal.on{display:flex}
+.pbox{width:min(560px,92vw);background:var(--panel);border:1px solid var(--violet);border-radius:14px;overflow:hidden;box-shadow:8px 8px 0 color-mix(in srgb,var(--violet) 35%,transparent)}
+#pin{width:100%;padding:16px 20px;background:transparent;border:0;border-bottom:1px solid var(--line);font-size:15px;outline:none}
+.pi{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:11px 20px;color:var(--muted)}
+.pi.sel,.pi:hover{background:var(--hover);color:var(--text)}
+.pi b{width:9px;height:9px;border-radius:3px}
+
+/* toast + boot */
+#toast{position:fixed;left:50%;bottom:50px;transform:translate(-50%,20px);background:var(--panel);border:1px solid var(--violet);padding:10px 20px;border-radius:999px;font-size:13px;opacity:0;pointer-events:none;transition:.3s;z-index:90}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#boot{position:fixed;inset:0;background:var(--side);z-index:100;display:flex;align-items:center;justify-content:center;padding:30px;transition:opacity .6s}
+#boot.off{opacity:0;pointer-events:none}
+#boot pre{font-size:14px;line-height:2;color:var(--mint);max-width:560px;width:100%;white-space:pre-wrap}
+#boot small{display:block;margin-top:18px;color:var(--dim);font-size:12px}
+
+@media(max-width:900px){.g3,.g4,.stats{grid-template-columns:repeat(2,1fr)}.cgrid{grid-template-columns:1fr}}
+@media(max-width:760px){
+  .body{flex-direction:column}
+  .explorer{width:100%;display:flex;overflow-x:auto;padding:0;border-right:0;border-bottom:1px solid var(--line)}
+  .ex-t,.folder,.hint{display:none}
+  .file{width:auto;white-space:nowrap;padding:10px 14px;border-left:0;border-bottom:2px solid transparent}
+  .file.on{border-bottom-color:var(--violet)}
+  .tabbar,.crumb,.tb.hide-m{display:none}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .status .r{display:none}.status{justify-content:center}
+  #term{height:230px}
 }
-
-    </style>
-
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
-
-
 <body>
 
+<div id="boot"><pre id="bootText"></pre></div>
 
-<!-- =========================================================
-     NAVIGATION
-========================================================= -->
+<div class="app">
+  <header class="titlebar">
+    <div class="dots"><i></i><i></i><i></i></div>
+    <div class="ttl">pranjal@portfolio: ~</div>
+    <button class="tb" id="themeBtn" title="Change theme">🎨 theme</button>
+    <button class="tb hide-m" id="openPal">Ctrl K</button>
+  </header>
 
-<nav>
+  <div class="body">
+    <aside class="explorer" id="explorer">
+      <div class="ex-t">EXPLORER</div>
+      <div class="folder">▾ PRANJAL-PORTFOLIO</div>
+    </aside>
 
-    <div class="logo">
-        &lt;<span>PRANJAL</span>/&gt;
-    </div>
+    <main class="editor" id="editor">
+      <div id="glow"></div>
+      <div class="tabbar"><div class="tabs" id="tabs"></div><button class="run" id="runBtn">▶ Run</button></div>
+      <div class="crumb" id="crumb"></div>
 
-    <ul>
+      <div class="views" id="views">
 
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Works</a></li>
-        <li><a href="#academics">Academics</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <!-- HOME -->
+        <section class="view" id="v-home">
+          <div class="tag"><span class="live"></span>Available for learning &amp; building</div>
+          <h1>Hi, I'm<br><em>Pranjal.</em></h1>
+          <div class="typed"><span class="r">&gt;</span> <span id="typed"></span><span class="caret"></span></div>
+          <p class="lead">I'm a computer science student interested in programming, software development, artificial intelligence and building useful things with technology.</p>
+          <div class="btns">
+            <a href="https://github.com/PRANJALxDEVxAI" target="_blank" rel="noopener noreferrer" class="btn main">GitHub</a>
+            <button class="btn" data-open="projects">Explore My Work</button>
+          </div>
 
-    </ul>
+          <div class="stats">
+            <div class="card stat"><div class="v" id="stProj">0</div><div class="l">PROJECTS BUILT</div></div>
+            <div class="card stat"><div class="v">2</div><div class="l">LANGUAGES · PYTHON • C++</div></div>
+            <div class="card stat"><div class="v" id="stRepos">—</div><div class="l">GITHUB REPOS · LIVE</div></div>
+            <div class="card stat"><div class="v" id="stFol">—</div><div class="l">GITHUB FOLLOWERS · LIVE</div></div>
+          </div>
 
-</nav>
+          <div class="cm mt"># QUICK ACTIONS</div>
+          <div class="grid g4">
+            <button class="card launch" data-open="projects"><div class="ic">🚀</div><h3>Projects</h3><p>Search, filter and clone my work.</p></button>
+            <button class="card launch" id="qTerm"><div class="ic">⌨️</div><h3>Terminal</h3><p>Type <span class="n">help</span> and explore.</p></button>
+            <button class="card launch" id="qTheme"><div class="ic">🎨</div><h3>Theme</h3><p>Switch the whole look instantly.</p></button>
+            <button class="card launch" data-open="contact"><div class="ic">✉️</div><h3>Say hello</h3><p>Send me a message.</p></button>
+          </div>
 
+          <div class="block mt" style="max-width:640px"><span class="s">$</span> whoami
+Pranjal Gupta
+<span class="s">$</span> current_focus
+<span class="p">Programming / C++ / Python / AI / Development</span>
+<span class="s">$</span> status
+Learning → Building → Improving</div>
+        </section>
 
+        <!-- ABOUT -->
+        <section class="view" id="v-about">
+          <div class="cm"># ABOUT_ME · The person behind the code</div>
+          <h2>A little about <em>me</em></h2>
+          <h3 style="font-family:var(--head);font-size:26px;margin-bottom:16px">Hello, I'm Pranjal Gupta.</h3>
+          <p class="lead" style="margin-bottom:12px">I'm a Computer Science student with a strong interest in programming and technology.</p>
+          <p class="lead" style="margin-bottom:12px">I started my programming journey with Python and have worked on different projects to understand programming, object-oriented programming, file handling, JSON persistence and application development.</p>
+          <p class="lead" style="margin-bottom:12px">I'm currently expanding my knowledge with C++, Data Structures and Algorithms, web development and Artificial Intelligence.</p>
+          <p class="lead" style="margin-bottom:28px">I enjoy learning by actually building things rather than only studying concepts. My goal is to continuously improve my programming skills and eventually build larger and more useful software.</p>
 
-<!-- =========================================================
-     HERO
-========================================================= -->
+          <div class="block" style="max-width:640px"><span class="k">me</span> = {
+  <span class="p">"name"</span>: <span class="s">"Pranjal Gupta"</span>,
+  <span class="p">"field"</span>: <span class="s">"Computer Science"</span>,
+  <span class="p">"primary_interest"</span>: <span class="s">"Programming &amp; Technology"</span>,
+  <span class="p">"current_languages"</span>: <span class="s">"Python • C++"</span>,
+  <span class="p">"interests"</span>: <span class="s">"AI • Development • Games"</span>,
+  <span class="p">"approach"</span>: <span class="s">"Learn → Build → Improve"</span>
+}</div>
 
-<section class="hero" id="home">
+          <div class="cm mt"># INTERESTS · What I'm into</div>
+          <div class="grid g4">
+            <div class="card"><div class="ic">💻</div><h3>Programming</h3><p>Writing code, solving problems and learning programming concepts.</p></div>
+            <div class="card"><div class="ic">🤖</div><h3>Artificial Intelligence</h3><p>Exploring AI, machine learning and intelligent applications.</p></div>
+            <div class="card"><div class="ic">🌐</div><h3>Development</h3><p>Building websites, applications and useful software projects.</p></div>
+            <div class="card"><div class="ic">🎮</div><h3>Gaming</h3><p>Playing story-driven games and exploring technology behind games.</p></div>
+          </div>
+        </section>
 
-    <div class="hero-content">
+        <!-- SKILLS -->
+        <section class="view" id="v-skills">
+          <div class="cm"># TECH_STACK · Technologies and tools I'm learning and using · click a skill</div>
+          <h2>My <em>Skills</em></h2>
+          <div class="grid g2">
+            <div class="card"><h3>Programming</h3><div class="chips"><button class="chip" data-skill="Python">Python</button><button class="chip" data-skill="C++">C++</button></div></div>
+            <div class="card"><h3>Web Development</h3><div class="chips"><button class="chip" data-skill="HTML">HTML</button><button class="chip" data-skill="CSS">CSS</button><button class="chip" data-skill="JavaScript">JavaScript</button></div></div>
+            <div class="card"><h3>Development Tools</h3><div class="chips"><button class="chip" data-skill="Git">Git</button><button class="chip" data-skill="GitHub">GitHub</button><button class="chip" data-skill="VS Code">VS Code</button></div></div>
+            <div class="card"><h3>Other Technologies</h3><div class="chips"><button class="chip" data-skill="JSON">JSON</button><button class="chip" data-skill="PDF Processing">PDF Processing</button><button class="chip" data-skill="OOP">OOP</button><button class="chip" data-skill="APIs">APIs</button></div></div>
+          </div>
+          <div class="card" id="skillOut"><span class="cm">// pick a skill above to see where I've used it</span></div>
+        </section>
 
-        <div class="status">
+        <!-- LEARNING -->
+        <section class="view" id="v-learning">
+          <div class="cm"># CURRENTLY_LEARNING · click a box to tick it off</div>
+          <h2>What I'm <em>learning</em></h2>
+          <div class="grid" style="max-width:760px">
+            <div class="card todo"><div class="box"></div><div><h3>C++ &amp; Data Structures</h3><p>Improving programming fundamentals through C++, problem solving and Data Structures &amp; Algorithms.</p></div></div>
+            <div class="card todo"><div class="box"></div><div><h3>Artificial Intelligence</h3><p>Exploring AI concepts, machine learning fundamentals, APIs and AI-powered applications.</p></div></div>
+            <div class="card todo"><div class="box"></div><div><h3>Web Development</h3><p>Learning how frontend technologies work together to create interactive websites and applications.</p></div></div>
+            <div class="card todo"><div class="box"></div><div><h3>Development &amp; Engineering Tools</h3><p>Expanding technical knowledge through tools and technologies used in college and software development.</p></div></div>
+          </div>
+        </section>
 
-            <div class="status-dot"></div>
+        <!-- PROJECTS -->
+        <section class="view" id="v-projects">
+          <div class="cm"># MY_WORK · A collection of my programming projects and experiments</div>
+          <h2>Things I've <em>built</em></h2>
+          <div class="ctrl">
+            <input id="psearch" placeholder="🔍 search projects… (try: json, discord, pdf)" autocomplete="off">
+            <select id="psort"><option value="def">Order: default</option><option value="az">Order: A → Z</option></select>
+            <button class="tb" id="pview">▦ grid / list</button>
+          </div>
+          <div class="filters" id="filters">
+            <button class="f on" data-f="all">All</button>
+            <button class="f" data-f="ai">AI</button>
+            <button class="f" data-f="automation">Automation</button>
+            <button class="f" data-f="api">API</button>
+            <button class="f" data-f="cli">CLI</button>
+            <button class="f" data-f="oop">OOP</button>
+          </div>
+          <div id="pcount"></div>
+          <div class="grid" id="pgrid">
 
-            Available for learning & building
+            <div class="card proj" data-cat="automation api"><div class="pn"><span>PROJECT_01</span><span>📁</span></div><h3>EMAIL AUTOMATION</h3><p>A Python-based email automation tool using Gmail SMTP with support for CC, BCC, multiple attachments, and secure environment-based credentials.</p><div class="tech"><span>Python</span><span>Automation</span><span>API</span></div><a class="plink" href="https://github.com/PRANJALxDEVxAI/email-automation-gmail-smtp.git" target="_blank" rel="noopener noreferrer">View Project →</a></div>
 
-        </div>
+            <div class="card proj" data-cat="ai automation"><div class="pn"><span>PROJECT_02</span><span>📁</span></div><h3>FRIDAY AI ASSISTANT</h3><p>A Python-based personal AI voice assistant inspired by JARVIS/FRIDAY, combining speech recognition, Gemini AI, text-to-speech, persistent conversation history, and a real-time sci-fi desktop interface.</p><div class="tech"><span>Python</span><span>AI</span><span>Automation</span></div><a class="plink" href="https://github.com/PRANJALxDEVxAI/FRIDAY-AI-Personal-Voice-Assistant.git" target="_blank" rel="noopener noreferrer">View Project →</a></div>
 
+            <div class="card proj" data-cat="ai api"><div class="pn"><span>PROJECT_03</span><span>📁</span></div><h3>DISCORD CHATBOT</h3><p>An AI-powered Discord bot built with Python and the OpenAI API for answering questions and assisting users in real time.</p><div class="tech"><span>Python</span><span>OpenAI API</span><span>Discord</span></div><a class="plink" href="https://github.com/PRANJALxDEVxAI/discord-ai-bot-openai.git" target="_blank" rel="noopener noreferrer">View Project →</a></div>
 
-        <h1>
+            <div class="card proj" data-cat="cli"><div class="pn"><span>PROJECT_04</span><span>📁</span></div><h3>PDF TOOLKIT</h3><p>A command-line PDF Toolkit built with Python and PyPDF featuring PDF merging, splitting, rotation, text extraction, and metadata viewing.</p><div class="tech"><span>Python</span><span>PyPDF</span><span>CLI</span></div><a class="plink" href="https://github.com/PRANJALxDEVxAI/pdf-toolkit-python.git" target="_blank" rel="noopener noreferrer">View Project →</a></div>
 
-            Hi, I'm
-            <span>Pranjal.</span>
+            <div class="card proj" data-cat="cli oop"><div class="pn"><span>PROJECT_05</span><span>📁</span></div><h3>EXPENSE TRACKER</h3><p>A command-line Expense Tracker built with Python using Object-Oriented Programming (OOP) and JSON storage. Manage daily expenses with features like add, update, delete, search, and persistent data saving.</p><div class="tech"><span>Python</span><span>OOP</span><span>JSON</span></div><a class="plink" href="https://github.com/PRANJALxDEVxAI/expense-tracker-python.git" target="_blank" rel="noopener noreferrer">View Project →</a></div>
 
-        </h1>
+            <div class="card proj" data-cat="cli oop"><div class="pn"><span>PROJECT_06</span><span>📁</span></div><h3>BANK MANAGEMENT SYSTEM</h3><p>A menu-driven Python bank management system using Object-Oriented Programming and JSON-based data persistence.</p><div class="tech"><span>Python</span><span>OOP</span><span>JSON</span></div><a class="plink" href="https://github.com/PRANJALxDEVxAI/bank-management-system.git" target="_blank" rel="noopener noreferrer">View Project →</a></div>
 
+            <div class="card proj" data-cat="cli oop"><div class="pn"><span>PROJECT_07</span><span>📁</span></div><h3>SECURITY MANAGER</h3><p>A secure command-line password manager built with Python that stores, retrieves, updates, and manages user credentials using JSON-based persistent storage.</p><div class="tech"><span>Python</span><span>JSON</span><span>OOP</span></div><a class="plink" href="https://github.com/PRANJALxDEVxAI/password-vault-python.git" target="_blank" rel="noopener noreferrer">View Project →</a></div>
 
-        <div class="subtitle">
+            <div class="card proj" data-cat="automation"><div class="pn"><span>PROJECT_08</span><span>📁</span></div><h3>OS MODULE REMINDING SYSTEM</h3><p>A Python application that reminds users to drink water at regular intervals to promote healthy hydration habits.</p><div class="tech"><span>Python</span><span>OS Module</span></div><a class="plink" href="https://github.com/PRANJALxDEVxAI/water-drinking-reminder-python.git" target="_blank" rel="noopener noreferrer">View Project →</a></div>
 
-            Programmer • Developer • Tech Enthusiast
+            <div class="card proj" data-cat="api"><div class="pn"><span>PROJECT_09</span><span>📁</span></div><h3>NEWS API INTEGRATION</h3><p>A Python application that fetches and displays the latest news articles using a News API in an organised manner.</p><div class="tech"><span>Python</span><span>API</span><span>JSON</span></div><a class="plink" href="https://github.com/PRANJALxDEVxAI/news-app-python.git" target="_blank" rel="noopener noreferrer">View Project →</a></div>
 
-        </div>
+            <div class="card proj" data-cat="ai automation api"><div class="pn"><span>PROJECT_10</span><span>📁</span></div><h3>AI-DOCUMENT-INTELLIGENCE</h3><p>A beginner-built RAG system that answers questions about PDF documents using semantic search, embeddings, and Google Gemini.</p><div class="tech"><span>Python</span><span>AUTOMATION</span><span>RAG/API</span></div><a class="plink" href="https://github.com/PRANJALxDEVxAI/AI-DOCUMENT-INTELLIGENCE.git" target="_blank" rel="noopener noreferrer">View Project →</a></div>
 
+            <div class="card proj" data-cat="cli automation"><div class="pn"><span>PROJECT_11</span><span>📁</span></div><h3>SMART-FILE-ORGANISER-(ADVANCED)</h3><p>Python CLI tool that organizes your Downloads folder by file type, date, or custom rules, with preview mode and undo.</p><div class="tech"><span>Python</span><span>OS</span><span>AUTOMATION</span></div><a class="plink" href="https://github.com/PRANJALxDEVxAI/SMART-FILE-ORGANIZER-ADVANCED-.git" target="_blank" rel="noopener noreferrer">View Project →</a></div>
 
-        <p class="hero-description">
+          </div>
+        </section>
 
-            I'm a computer science student interested in programming,
-            software development, artificial intelligence and building
-            useful things with technology.
+        <!-- JOURNEY -->
+        <section class="view" id="v-journey">
+          <div class="cm"># DEVELOPER_PROFILE · From programming fundamentals to building practical applications</div>
+          <h2>My <em>Development</em> Journey</h2>
+          <div class="log">
+            <div class="commit card"><div class="hash">commit 01<span>☕ Java</span></div><p>Java was the foundation of my programming journey. I started by developing programming fundamentals, building logical thinking and problem-solving skills, and learning Data Structures and Algorithms.</p></div>
+            <div class="commit card"><div class="hash">commit 02<span>🐍 Python</span></div><p>After building my programming foundation with Java, I moved to Python and began applying my programming knowledge by creating practical applications and projects.</p></div>
+            <div class="commit card"><div class="hash">commit 03<span>🛠️ Practical Python</span></div><p>I expanded my Python skills by working with JSON data persistence, file handling, the OS module, PyPDF, APIs and other libraries to build more practical applications.</p></div>
+            <div class="commit card"><div class="hash">commit 04<span>⚡ C++</span></div><p>I am currently learning and using C++ as part of my college coursework while strengthening my programming, problem-solving and Data Structures and Algorithms skills.</p></div>
+            <div class="commit card"><div class="hash">commit 05 (HEAD)<span>🤖 AI &amp; Development</span></div><p>I'm expanding my knowledge into Artificial Intelligence, web development and software development while continuing to strengthen my core programming skills.</p></div>
+          </div>
+        </section>
 
-        </p>
+        <!-- ACADEMICS + EDUCATION -->
+        <section class="view" id="v-academics">
+          <div class="cm"># ACADEMICS</div>
+          <h2>Academic <em>Performance</em></h2>
+          <table>
+            <tr><th>EXAMINATION</th><th>YEAR</th><th>SCORE / RESULT</th></tr>
+            <tr><td>Class 10</td><td>2024</td><td>94.4%</td></tr>
+            <tr><td>Class 12</td><td>2026</td><td>90%</td></tr>
+            <tr><td>JEE Main</td><td>2026</td><td>84%ile</td></tr>
+          </table>
+          <div class="cm" style="margin-top:50px"># EDUCATION</div>
+          <h2>My <em>Education</em></h2>
+          <div class="grid g2">
+            <div class="card"><div class="yr">2026 — PRESENT</div><h3>Computer Science / CSIT</h3><p>Currently pursuing my undergraduate studies with a focus on computer science and technology.</p></div>
+            <div class="card"><div class="yr">SCHOOL</div><h3>Senior Secondary Education</h3><p>Completed school education with a focus on Physics, Chemistry, Mathematics, Biology and Computer-related learning.</p></div>
+          </div>
+        </section>
 
+        <!-- GOALS -->
+        <section class="view" id="v-goals">
+          <div class="cm"># FUTURE</div>
+          <h2>Where I'm <em>heading</em></h2>
+          <div class="grid g3">
+            <div class="card goal"><div class="num">01</div><h3>Strong Programming</h3><p>Build strong fundamentals in programming, algorithms and problem solving.</p></div>
+            <div class="card goal"><div class="num">02</div><h3>AI &amp; Software</h3><p>Learn AI and combine it with software development to build useful applications.</p></div>
+            <div class="card goal"><div class="num">03</div><h3>Build Bigger Projects</h3><p>Move from smaller applications toward larger, more complete software projects.</p></div>
+          </div>
+        </section>
 
-        <div class="hero-buttons">
-
-            <!-- CHANGE URL -->
-
-            <a
-                href="https://github.com/PRANJALxDEVxAI"
-                target="_blank"
-                class="btn btn-primary">
-
-                GitHub
-
-            </a>
-
-
-            <a
-                href="#projects"
-                class="btn btn-outline">
-
-                Explore My Work
-
-            </a>
-
-        </div>
-
-
-        <!-- TERMINAL -->
-
-        <div class="terminal-box">
-
-            <div class="terminal-header">
-
-                <div class="terminal-circle"></div>
-                <div class="terminal-circle"></div>
-                <div class="terminal-circle"></div>
-
-                <div class="terminal-title">
-
-                    pranjal@portfolio: ~
-
-                </div>
-
+        <!-- CONTACT -->
+        <section class="view" id="v-contact">
+          <div class="cm"># CONTACT</div>
+          <h2>Let's <em>Connect.</em></h2>
+          <p class="lead">Whether it's programming, technology, development or just sharing ideas — feel free to connect with me.</p>
+          <div class="cgrid mt">
+            <div>
+              <div class="btns" style="margin-top:0">
+                <a href="https://github.com/PRANJALxDEVxAI" target="_blank" rel="noopener noreferrer" class="btn main">GitHub</a>
+                <a href="https://www.linkedin.com/in/pranjal-gupta-3b879142b?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="btn">LinkedIn</a>
+                <a href="https://www.instagram.com/_pranshu__gupta_" target="_blank" rel="noopener noreferrer" class="btn">Instagram</a>
+              </div>
+              <a class="mail" href="mailto:cool.vishalgupta333@gmail.com">👉 cool.vishalgupta333@gmail.com</a>
+              <div><button class="btn" id="copyMail" style="margin-top:16px">⧉ Copy email</button></div>
             </div>
+            <form class="card" id="cform">
+              <h3>Send a message</h3>
+              <input id="cname" name="name" placeholder="Your name" required>
+              <input id="cemail" name="email" type="email" placeholder="Your email (so I can reply)" required>
+              <textarea id="cmsg" name="message" rows="5" placeholder="Your message…" required></textarea>
+              <input type="text" id="choney" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+              <button class="btn main" type="submit" id="csend">Send ↗</button>
+              <p id="cstatus">Your message goes straight to my inbox.</p>
+            </form>
+          </div>
+        </section>
 
+      </div>
 
-            <div class="terminal-content">
+      <!-- terminal -->
+      <div id="term">
+        <div class="th"><span>TERMINAL</span><button id="tclose" aria-label="Close terminal">✕</button></div>
+        <div id="tout"></div>
+        <div class="tin"><span>$</span><input id="tinp" autocomplete="off" spellcheck="false" placeholder="type help…"></div>
+      </div>
+    </main>
+  </div>
 
-                <div>
-                    <span class="terminal-green">$</span>
-                    whoami
-                </div>
-
-                <div>
-                    Pranjal Gupta
-                </div>
-
-                <div>
-                    <span class="terminal-green">$</span>
-                    current_focus
-                </div>
-
-                <div>
-                    Programming / C++ / Python / AI / Development
-                </div>
-
-                <div>
-                    <span class="terminal-green">$</span>
-                    status
-                </div>
-
-                <div>
-                    Learning → Building → Improving
-                </div>
-
-            </div>
-
-        </div>
-
+  <footer class="status">
+    <div class="l">
+      <button id="sTerm">⌨ terminal</button>
+      <button id="sTheme">🎨 theme</button>
+      <button id="sPal">⌕ jump</button>
     </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     ABOUT
-========================================================= -->
-
-<section id="about">
-
-    <div class="section-heading">
-
-        <div class="small">// ABOUT_ME</div>
-
-        <h2>
-            A little about <span>me</span>
-        </h2>
-
-        <p>
-            The person behind the code
-        </p>
-
-    </div>
-
-
-    <div class="about-grid">
-
-
-        <div class="about-text">
-
-            <h3>
-                Hello, I'm <span>Pranjal Gupta.</span>
-            </h3>
-
-
-            <p>
-
-                I'm a Computer Science student with a strong interest
-                in programming and technology.
-
-            </p>
-
-
-            <p>
-
-                I started my programming journey with Python and have
-                worked on different projects to understand programming,
-                object-oriented programming, file handling, JSON
-                persistence and application development.
-
-            </p>
-
-
-            <p>
-
-                I'm currently expanding my knowledge with C++,
-                Data Structures and Algorithms, web development and
-                Artificial Intelligence.
-
-            </p>
-
-
-            <p>
-
-                I enjoy learning by actually building things rather
-                than only studying concepts. My goal is to continuously
-                improve my programming skills and eventually build
-                larger and more useful software.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="info-card">
-
-            <div class="info-list">
-
-                <div class="info-item">
-
-                    <small>NAME</small>
-
-                    <strong>
-                        Pranjal Gupta
-                    </strong>
-
-                </div>
-
-
-                <div class="info-item">
-
-                    <small>FIELD</small>
-
-                    <strong>
-                        Computer Science
-                    </strong>
-
-                </div>
-
-
-                <div class="info-item">
-
-                    <small>PRIMARY INTEREST</small>
-
-                    <strong>
-                        Programming & Technology
-                    </strong>
-
-                </div>
-
-
-                <div class="info-item">
-
-                    <small>CURRENT LANGUAGES</small>
-
-                    <strong>
-                        Python • C++
-                    </strong>
-
-                </div>
-
-
-                <div class="info-item">
-
-                    <small>INTERESTS</small>
-
-                    <strong>
-                        AI • Development • Games
-                    </strong>
-
-                </div>
-
-
-                <div class="info-item">
-
-                    <small>APPROACH</small>
-
-                    <strong>
-                        Learn → Build → Improve
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     INTERESTS
-========================================================= -->
-
-<section>
-
-    <div class="section-heading">
-
-        <div class="small">// INTERESTS</div>
-
-        <h2>
-            What I'm <span>into</span>
-        </h2>
-
-    </div>
-
-
-    <div class="interest-grid">
-
-
-        <div class="interest-card">
-
-            <div class="interest-icon">💻</div>
-
-            <h3>Programming</h3>
-
-            <p>
-                Writing code, solving problems and learning
-                programming concepts.
-            </p>
-
-        </div>
-
-
-        <div class="interest-card">
-
-            <div class="interest-icon">🤖</div>
-
-            <h3>Artificial Intelligence</h3>
-
-            <p>
-                Exploring AI, machine learning and intelligent
-                applications.
-            </p>
-
-        </div>
-
-
-        <div class="interest-card">
-
-            <div class="interest-icon">🌐</div>
-
-            <h3>Development</h3>
-
-            <p>
-                Building websites, applications and useful
-                software projects.
-            </p>
-
-        </div>
-
-
-        <div class="interest-card">
-
-            <div class="interest-icon">🎮</div>
-
-            <h3>Gaming</h3>
-
-            <p>
-                Playing story-driven games and exploring
-                technology behind games.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     SKILLS
-========================================================= -->
-
-<section id="skills">
-
-    <div class="section-heading">
-
-        <div class="small">// TECH_STACK</div>
-
-        <h2>
-            My <span>Skills</span>
-        </h2>
-
-        <p>
-            Technologies and tools I'm learning and using
-        </p>
-
-    </div>
-
-
-    <div class="skills-wrapper">
-
-
-        <div class="skill-box">
-
-            <h3>Programming</h3>
-
-            <div class="skill-list">
-
-                <div class="skill-tag">Python</div>
-                <div class="skill-tag">C++</div>
-
-            </div>
-
-        </div>
-
-
-        <div class="skill-box">
-
-            <h3>Web Development</h3>
-
-            <div class="skill-list">
-
-                <div class="skill-tag">HTML</div>
-                <div class="skill-tag">CSS</div>
-                <div class="skill-tag">JavaScript</div>
-
-            </div>
-
-        </div>
-
-
-        <div class="skill-box">
-
-            <h3>Development Tools</h3>
-
-            <div class="skill-list">
-
-                <div class="skill-tag">Git</div>
-                <div class="skill-tag">GitHub</div>
-                <div class="skill-tag">VS Code</div>
-
-            </div>
-
-        </div>
-
-
-        <div class="skill-box">
-
-            <h3>Other Technologies</h3>
-
-            <div class="skill-list">
-
-                <div class="skill-tag">JSON</div>
-                <div class="skill-tag">PDF Processing</div>
-                <div class="skill-tag">OOP</div>
-                <div class="skill-tag">APIs</div>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     CURRENT LEARNING
-========================================================= -->
-
-<section>
-
-    <div class="section-heading">
-
-        <div class="small">// CURRENTLY_LEARNING</div>
-
-        <h2>
-            What I'm <span>learning</span>
-        </h2>
-
-    </div>
-
-
-    <div class="learning-container">
-
-
-        <div class="learning-item">
-
-            <h3>
-                C++ & Data Structures
-            </h3>
-
-            <p>
-
-                Improving programming fundamentals through C++,
-                problem solving and Data Structures & Algorithms.
-
-            </p>
-
-        </div>
-
-
-        <div class="learning-item">
-
-            <h3>
-                Artificial Intelligence
-            </h3>
-
-            <p>
-
-                Exploring AI concepts, machine learning fundamentals,
-                APIs and AI-powered applications.
-
-            </p>
-
-        </div>
-
-
-        <div class="learning-item">
-
-            <h3>
-                Web Development
-            </h3>
-
-            <p>
-
-                Learning how frontend technologies work together
-                to create interactive websites and applications.
-
-            </p>
-
-        </div>
-
-
-        <div class="learning-item">
-
-            <h3>
-                Development & Engineering Tools
-            </h3>
-
-            <p>
-
-                Expanding technical knowledge through tools and
-                technologies used in college and software development.
-
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     PROJECTS
-========================================================= -->
-
-<section id="projects">
-
-    <div class="section-heading">
-
-        <div class="small">// MY_WORK</div>
-
-        <h2>
-            Things I've <span>built</span>
-        </h2>
-
-        <p>
-            A collection of my programming projects and experiments
-        </p>
-
-    </div>
-
-
-    <div class="projects">
-<!-- =====================================================
-     PROJECT 01
-====================================================== -->
-
-<div class="project-card">
-
-    <div class="project-number">
-        PROJECT_01
-    </div>
-
-    <h3>
-        EMAIL AUTOMATION
-    </h3>
-
-    <p>
-        A Python-based email automation tool using Gmail SMTP 
-        with support for CC, BCC, multiple attachments, and 
-        secure environment-based credentials.
-    </p>
-
-    <div class="project-tech">
-
-        <span>Python</span>
-        <span>Automation</span>
-        <span>API</span>
-
-    </div>
-
-    <a
-        href="https://github.com/PRANJALxDEVxAI/email-automation-gmail-smtp.git"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link">
-
-        View Project →
-
-    </a>
-
+    <div class="r">© 2026 Pranjal Gupta · Built with HTML, CSS &amp; JavaScript</div>
+  </footer>
 </div>
 
-
-
-<!-- =====================================================
-     PROJECT 02
-====================================================== -->
-
-<div class="project-card">
-
-    <div class="project-number">
-        PROJECT_02
-    </div>
-
-    <h3>
-        FRIDAY AI ASSISTANT
-    </h3>
-
-    <p>
-        A Python-based personal AI voice assistant inspired by
-        JARVIS/FRIDAY, combining speech recognition, Gemini AI,
-        text-to-speech, persistent conversation history, and a 
-        real-time sci-fi desktop interface.
-    </p>
-
-    <div class="project-tech">
-
-        <span>Python</span>
-        <span>AI</span>
-        <span>Automation</span>
-
-    </div>
-
-    <a
-        href="https://github.com/PRANJALxDEVxAI/FRIDAY-AI-Personal-Voice-Assistant.git"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link">
-
-        View Project →
-
-    </a>
-
-</div>
-
-
-
-<!-- =====================================================
-     PROJECT 03
-====================================================== -->
-
-<div class="project-card">
-
-    <div class="project-number">
-        PROJECT_03
-    </div>
-
-    <h3>
-        DISCORD CHATBOT
-    </h3>
-
-    <p>
-        An AI-powered Discord bot built with Python and the
-        OpenAI API for answering questions and assisting
-        users in real time.
-    </p>
-
-    <div class="project-tech">
-
-        <span>Python</span>
-        <span>OpenAI API</span>
-        <span>Discord</span>
-
-    </div>
-
-    <a
-        href="https://github.com/PRANJALxDEVxAI/discord-ai-bot-openai.git"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link">
-
-        View Project →
-
-    </a>
-
-</div>
-
-
-
-<!-- =====================================================
-     PROJECT 04
-====================================================== -->
-
-<div class="project-card">
-
-    <div class="project-number">
-        PROJECT_04
-    </div>
-
-    <h3>
-        PDF TOOLKIT
-    </h3>
-
-    <p>
-        A command-line PDF Toolkit built with Python and
-        PyPDF featuring PDF merging, splitting, rotation,
-        text extraction, and metadata viewing.
-    </p>
-
-    <div class="project-tech">
-
-        <span>Python</span>
-        <span>PyPDF</span>
-        <span>CLI</span>
-
-    </div>
-
-    <a
-        href="https://github.com/PRANJALxDEVxAI/pdf-toolkit-python.git"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link">
-
-        View Project →
-
-    </a>
-
-</div>
-
-
-
-<!-- =====================================================
-     PROJECT 05
-====================================================== -->
-
-<div class="project-card">
-
-    <div class="project-number">
-        PROJECT_05
-    </div>
-
-    <h3>
-        EXPENSE TRACKER
-    </h3>
-
-    <p>
-        A command-line Expense Tracker built with Python
-        using Object-Oriented Programming (OOP) and JSON
-        storage. Manage daily expenses with features like
-        add, update, delete, search, and persistent data saving.
-    </p>
-
-    <div class="project-tech">
-
-        <span>Python</span>
-        <span>OOP</span>
-        <span>JSON</span>
-
-    </div>
-
-    <a
-        href="https://github.com/PRANJALxDEVxAI/expense-tracker-python.git"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link">
-
-        View Project →
-
-    </a>
-
-</div>
-
-
-
-<!-- =====================================================
-     PROJECT 06
-====================================================== -->
-
-<div class="project-card">
-
-    <div class="project-number">
-        PROJECT_06
-    </div>
-
-    <h3>
-        BANK MANAGEMENT SYSTEM
-    </h3>
-
-    <p>
-        A menu-driven Python bank management system using
-        Object-Oriented Programming and JSON-based data
-        persistence.
-    </p>
-
-    <div class="project-tech">
-
-        <span>Python</span>
-        <span>OOP</span>
-        <span>JSON</span>
-
-    </div>
-
-    <a
-        href="https://github.com/PRANJALxDEVxAI/bank-management-system.git"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link">
-
-        View Project →
-
-    </a>
-
-</div>
-
-
-
-<!-- =====================================================
-     PROJECT 07
-====================================================== -->
-
-<div class="project-card">
-
-    <div class="project-number">
-        PROJECT_07
-    </div>
-
-    <h3>
-        SECURITY MANAGER
-    </h3>
-
-    <p>
-        A secure command-line password manager built with
-        Python that stores, retrieves, updates, and manages
-        user credentials using JSON-based persistent storage.
-    </p>
-
-    <div class="project-tech">
-
-        <span>Python</span>
-        <span>JSON</span>
-        <span>OOP</span>
-
-    </div>
-
-    <a
-        href="https://github.com/PRANJALxDEVxAI/password-vault-python.git"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link">
-
-        View Project →
-
-    </a>
-
-</div>
-
-
-
-<!-- =====================================================
-     PROJECT 08
-====================================================== -->
-
-<div class="project-card">
-
-    <div class="project-number">
-        PROJECT_08
-    </div>
-
-    <h3>
-        OS MODULE REMINDING SYSTEM
-    </h3>
-
-    <p>
-        A Python application that reminds users to drink
-        water at regular intervals to promote healthy
-        hydration habits.
-    </p>
-
-    <div class="project-tech">
-
-        <span>Python</span>
-        <span>OS Module</span>
-
-    </div>
-
-    <a
-        href="https://github.com/PRANJALxDEVxAI/water-drinking-reminder-python.git"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link">
-
-        View Project →
-
-    </a>
-
-</div>
-
-
-
-<!-- =====================================================
-     PROJECT 09
-====================================================== -->
-
-<div class="project-card">
-
-    <div class="project-number">
-        PROJECT_09
-    </div>
-
-    <h3>
-        NEWS API INTEGRATION
-    </h3>
-
-    <p>
-        A Python application that fetches and displays the
-        latest news articles using a News API in an organised
-        manner.
-    </p>
-
-    <div class="project-tech">
-
-        <span>Python</span>
-        <span>API</span>
-        <span>JSON</span>
-
-    </div>
-
-    <a
-        href="https://github.com/PRANJALxDEVxAI/news-app-python.git"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link">
-
-        View Project →
-
-    </a>
-
-</div>
-
-        <!-- =====================================================
-     PROJECT 10
-====================================================== -->
-
-<div class="project-card">
-
-    <div class="project-number">
-        PROJECT_10
-    </div>
-
-    <h3>
-        AI-DOCUMENT-INTELLIGENCE
-    </h3>
-
-    <p>
-        A beginner-built RAG system that answers questions about PDF documents using semantic search, embeddings, and Google Gemini.
-    </p>
-
-    <div class="project-tech">
-
-        <span>Python</span>
-        <span>AUTOMATION</span>
-        <span>RAG/API</span>
-
-    </div>
-
-    <a
-        href="https://github.com/PRANJALxDEVxAI/AI-DOCUMENT-INTELLIGENCE.git"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link">
-
-        View Project →
-
-    </a>
-
-</div>
-
-        <!-- =====================================================
-     PROJECT 11
-====================================================== -->
-
-<div class="project-card">
-
-    <div class="project-number">
-        PROJECT_11
-    </div>
-
-    <h3>
-        SMART-FILE-ORGANISER-(ADVANCED)
-    </h3>
-
-    <p>
-        Python CLI tool that organizes your Downloads folder by file type, date, or custom rules, with preview mode and undo.
-    </p>
-
-    <div class="project-tech">
-
-        <span>Python</span>
-        <span>OS</span>
-        <span>AUTOMATION</span>
-
-    </div>
-
-    <a
-        href="https://github.com/PRANJALxDEVxAI/SMART-FILE-ORGANIZER-ADVANCED-.git"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link">
-
-        View Project →
-
-    </a>
-
-</div>
-        <!-- =====================================================
-             ADD MORE PROJECTS HERE
-        ====================================================== -->
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     DEVELOPMENT PROFILE
-========================================================= -->
-
-<section>
-
-    <div class="section-heading">
-
-        <div class="small">// DEVELOPER_PROFILE</div>
-
-        <h2>
-            My <span>Development</span> Journey
-        </h2>
-
-        <p>
-            From programming fundamentals to building practical applications
-        </p>
-
-    </div>
-
-
-    <div class="dev-section">
-
-
-        <!-- JAVA -->
-
-        <div class="dev-card">
-
-            <h3>
-                ☕ Java
-            </h3>
-
-            <p>
-
-                Java was the foundation of my programming journey.
-                I started by developing programming fundamentals,
-                building logical thinking and problem-solving skills,
-                and learning Data Structures and Algorithms.
-
-            </p>
-
-        </div>
-
-
-        <!-- PYTHON -->
-
-        <div class="dev-card">
-
-            <h3>
-                🐍 Python
-            </h3>
-
-            <p>
-
-                After building my programming foundation with Java,
-                I moved to Python and began applying my programming
-                knowledge by creating practical applications and
-                projects.
-
-            </p>
-
-        </div>
-
-
-        <!-- PRACTICAL PYTHON -->
-
-        <div class="dev-card">
-
-            <h3>
-                🛠️ Practical Python
-            </h3>
-
-            <p>
-
-                I expanded my Python skills by working with JSON
-                data persistence, file handling, the OS module,
-                PyPDF, APIs and other libraries to build more
-                practical applications.
-
-            </p>
-
-        </div>
-
-
-        <!-- C++ -->
-
-        <div class="dev-card">
-
-            <h3>
-                ⚡ C++
-            </h3>
-
-            <p>
-
-                I am currently learning and using C++ as part of my
-                college coursework while strengthening my programming,
-                problem-solving and Data Structures and Algorithms
-                skills.
-
-            </p>
-
-        </div>
-
-
-        <!-- AI & DEVELOPMENT -->
-
-        <div class="dev-card">
-
-            <h3>
-                🤖 AI & Development
-            </h3>
-
-            <p>
-
-                I'm expanding my knowledge into Artificial Intelligence,
-                web development and software development while continuing
-                to strengthen my core programming skills.
-
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-<!-- =========================================================
-     ACADEMICS
-========================================================= -->
-
-<section id="academics">
-
-    <div class="section-heading">
-
-        <div class="small">// ACADEMICS</div>
-
-        <h2>
-            Academic <span>Performance</span>
-        </h2>
-
-    </div>
-
-
-    <div class="academic-container">
-
-        <table>
-
-            <tr>
-
-                <th>Examination</th>
-                <th>Year</th>
-                <th>Score / Result</th>
-
-            </tr>
-
-
-            <tr>
-
-                <td>Class 10</td>
-                <td>2024</td>
-                <td>94.4%</td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>Class 12</td>
-                <td>2026</td>
-                <td>90%</td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>JEE Main</td>
-                <td>2026</td>
-                <td>84%ile</td>
-
-            </tr>
-
-
-
-
-        </table>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     EDUCATION
-========================================================= -->
-
-<section>
-
-    <div class="section-heading">
-
-        <div class="small">// EDUCATION</div>
-
-        <h2>
-            My <span>Education</span>
-        </h2>
-
-    </div>
-
-
-    <div class="education">
-
-
-        <div class="education-card">
-
-            <div class="year">
-                2026 — PRESENT
-            </div>
-
-            <h3>
-                Computer Science / CSIT
-            </h3>
-
-            <p>
-
-                Currently pursuing my undergraduate studies
-                with a focus on computer science and technology.
-
-            </p>
-
-        </div>
-
-
-        <div class="education-card">
-
-            <div class="year">
-                SCHOOL
-            </div>
-
-            <h3>
-                Senior Secondary Education
-            </h3>
-
-            <p>
-
-                Completed school education with a focus on
-                Physics, Chemistry, Mathematics, Biology and
-                Computer-related learning.
-
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     GOALS
-========================================================= -->
-
-<section>
-
-    <div class="section-heading">
-
-        <div class="small">// FUTURE</div>
-
-        <h2>
-            Where I'm <span>heading</span>
-        </h2>
-
-    </div>
-
-
-    <div class="goals">
-
-
-        <div class="goal">
-
-            <div class="goal-number">
-                01
-            </div>
-
-            <h3>
-                Strong Programming
-            </h3>
-
-            <p>
-
-                Build strong fundamentals in programming,
-                algorithms and problem solving.
-
-            </p>
-
-        </div>
-
-
-        <div class="goal">
-
-            <div class="goal-number">
-                02
-            </div>
-
-            <h3>
-                AI & Software
-            </h3>
-
-            <p>
-
-                Learn AI and combine it with software development
-                to build useful applications.
-
-            </p>
-
-        </div>
-
-
-        <div class="goal">
-
-            <div class="goal-number">
-                03
-            </div>
-
-            <h3>
-                Build Bigger Projects
-            </h3>
-
-            <p>
-
-                Move from smaller applications toward larger,
-                more complete software projects.
-
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     CONTACT
-========================================================= -->
-
-<section id="contact">
-
-    <div class="section-heading">
-
-        <div class="small">// CONTACT</div>
-
-    </div>
-
-
-    <div class="contact-box">
-
-        <h2>
-            Let's <span>Connect.</span>
-        </h2>
-
-
-        <p>
-
-            Whether it's programming, technology, development
-            or just sharing ideas — feel free to connect with me.
-
-        </p>
-
-
-        <div class="social-links">
-
-
-            <!-- CHANGE YOUR GITHUB URL -->
-
-            <a
-                href="https://github.com/PRANJALxDEVxAI"
-                target="_blank"
-                class="btn btn-primary">
-
-                GitHub
-
-            </a>
-
-
-            <!-- CHANGE YOUR LINKEDIN URL -->
-
-            <a
-                href="https://www.linkedin.com/in/pranjal-gupta-3b879142b?utm_source=share_via&utm_content=profile&utm_medium=member_android"
-                target="_blank"
-                class="btn btn-outline">
-
-                LinkedIn
-
-            </a>
-
-
-            <!-- CHANGE YOUR EMAIL -->
-
-            <a
-    href="mailto:youractualemail@gmail.com"
-    class="email-link">
-
-    👉cool.vishalgupta333@gmail.com
-
-</a>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer>
-
-    <p>
-
-        © 2026 <span>Pranjal Gupta</span>
-
-        · Built with HTML & CSS
-
-    </p>
-
-</footer>
-
-
+<div id="pal"><div class="pbox"><input id="pin" placeholder="Jump to a file or run an action…" autocomplete="off"><div id="plist"></div></div></div>
+<div id="toast"></div>
+
+<script>
+const LINKS={
+  github:'https://github.com/PRANJALxDEVxAI',
+  linkedin:'https://www.linkedin.com/in/pranjal-gupta-3b879142b?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+  instagram:'https://www.instagram.com/_pranshu__gupta_',
+  email:'cool.vishalgupta333@gmail.com'
+};
+const FILES=[
+  {id:'home',name:'home.md',c:'#ffd166',run:'neofetch'},
+  {id:'about',name:'about.py',c:'#60a5fa',run:'whoami'},
+  {id:'skills',name:'skills.json',c:'#5eead4',run:'skills'},
+  {id:'learning',name:'learning.todo',c:'#a78bfa',run:'learning'},
+  {id:'projects',name:'projects.git',c:'#ff6b81',run:'projects'},
+  {id:'journey',name:'journey.log',c:'#ffd166',run:'journey'},
+  {id:'academics',name:'academics.csv',c:'#5eead4',run:'academics'},
+  {id:'goals',name:'goals.md',c:'#60a5fa',run:'goals'},
+  {id:'contact',name:'contact.sh',c:'#ff6b81',run:'contact'}
+];
+const byId=Object.fromEntries(FILES.map(f=>[f.id,f]));
+const THEMES=['violet','matrix','sunset','ice'];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- toast + clipboard ---------- */
+let tt;
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),1800)}
+function copy(txt,msg){
+  const done=()=>toast(msg||'Copied!');
+  try{navigator.clipboard.writeText(txt).then(done,()=>fb())}catch(e){fb()}
+  function fb(){const a=document.createElement('textarea');a.value=txt;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove();done()}
+}
+
+/* ---------- explorer + tabs ---------- */
+let openTabs=['home'],active='home';
+const ex=$('explorer'),tabs=$('tabs');
+FILES.forEach(f=>{
+  const b=document.createElement('button');
+  b.className='file';b.dataset.id=f.id;
+  b.innerHTML=`<b style="background:${f.c}"></b>${f.name}`;
+  b.onclick=()=>go(f.id);ex.appendChild(b);
+});
+const hint=document.createElement('div');
+hint.className='hint';hint.innerHTML='Tip: <kbd>Ctrl K</kbd> jump anywhere<br><kbd>Ctrl `</kbd> open terminal';
+ex.appendChild(hint);
+
+function go(id){
+  if(!byId[id])return;
+  if(!openTabs.includes(id))openTabs.push(id);
+  active=id;render();
+  try{history.replaceState(null,'','#'+id)}catch(e){}
+}
+function closeTab(id){
+  openTabs=openTabs.filter(t=>t!==id);
+  if(!openTabs.length)openTabs=['home'];
+  if(active===id)active=openTabs[openTabs.length-1];
+  render();
+}
+function render(){
+  tabs.innerHTML='';
+  openTabs.forEach(id=>{
+    const f=byId[id],t=document.createElement('div');
+    t.className='tab'+(id===active?' on':'');
+    t.innerHTML=`<b style="background:${f.c}"></b>${f.name}<span class="x">×</span>`;
+    t.onclick=()=>go(id);
+    t.querySelector('.x').onclick=e=>{e.stopPropagation();closeTab(id)};
+    tabs.appendChild(t);
+  });
+  document.querySelectorAll('.view').forEach(v=>{
+    const on=v.id==='v-'+active;v.classList.toggle('on',on);
+    if(on)[...v.children].forEach((c,i)=>c.style.setProperty('--i',i));
+  });
+  document.querySelectorAll('.file').forEach(b=>b.classList.toggle('on',b.dataset.id===active));
+  $('crumb').textContent='pranjal-portfolio  ›  '+byId[active].name;
+  $('views').scrollTop=0;
+  if(active==='home')countUp($('stProj'),PROJ.length);
+}
+document.addEventListener('click',e=>{const o=e.target.closest('[data-open]');if(o)go(o.dataset.open)});
+
+/* ---------- count-up ---------- */
+function countUp(el,to){
+  const t0=performance.now();
+  (function f(t){const p=Math.min((t-t0)/900,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0);
+}
+
+/* ---------- typed hero ---------- */
+const roles=['Programmer','Developer','Tech Enthusiast'];
+let ri=0,ci=0,del=false;
+(function type(){
+  const w=roles[ri];$('typed').textContent=w.slice(0,ci);
+  if(!del&&ci<w.length){ci++;setTimeout(type,80)}
+  else if(!del){del=true;setTimeout(type,1300)}
+  else if(ci>0){ci--;setTimeout(type,40)}
+  else{del=false;ri=(ri+1)%roles.length;setTimeout(type,250)}
+})();
+
+/* ---------- cursor glow ---------- */
+$('editor').addEventListener('mousemove',e=>{
+  const r=$('editor').getBoundingClientRect(),g=$('glow');
+  g.style.left=(e.clientX-r.left)+'px';g.style.top=(e.clientY-r.top)+'px';
+});
+
+/* ---------- projects ---------- */
+const PROJ=[...document.querySelectorAll('.proj')];
+PROJ.forEach((c,i)=>{
+  c.dataset.n=i+1;c.dataset.i=i;
+  c.dataset.name=c.querySelector('h3').textContent;
+  const a=c.querySelector('.plink'),row=document.createElement('div');
+  row.className='prow';a.replaceWith(row);row.appendChild(a);
+  const b=document.createElement('button');
+  b.className='clone';b.textContent='⧉ clone';
+  b.onclick=()=>copy('git clone '+a.href,'Copied: git clone …');
+  row.appendChild(b);
+});
+let pcat='all';
+function applyProjects(){
+  const q=$('psearch').value.trim().toLowerCase();let n=0;
+  PROJ.forEach(p=>{
+    const okC=pcat==='all'||p.dataset.cat.split(' ').includes(pcat);
+    const okQ=!q||p.textContent.toLowerCase().includes(q);
+    p.classList.toggle('hide',!(okC&&okQ));if(okC&&okQ)n++;
+  });
+  $('pcount').textContent=`showing ${n} of ${PROJ.length} projects`;
+  const grid=$('pgrid');
+  [...PROJ].sort((a,b)=>$('psort').value==='az'?a.dataset.name.localeCompare(b.dataset.name):a.dataset.i-b.dataset.i).forEach(p=>grid.appendChild(p));
+}
+document.querySelectorAll('.f').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.f').forEach(x=>x.classList.remove('on'));b.classList.add('on');pcat=b.dataset.f;applyProjects();
+});
+$('psearch').oninput=applyProjects;$('psort').onchange=applyProjects;
+$('pview').onclick=()=>$('pgrid').classList.toggle('list');
+function showProject(n){
+  go('projects');pcat='all';$('psearch').value='';
+  document.querySelectorAll('.f').forEach(x=>x.classList.toggle('on',x.dataset.f==='all'));
+  applyProjects();
+  const c=PROJ[n-1];
+  setTimeout(()=>{c.scrollIntoView({behavior:'smooth',block:'center'});c.classList.remove('flash');void c.offsetWidth;c.classList.add('flash')},120);
+}
+applyProjects();
+
+/* ---------- skills ---------- */
+const SK={
+  'Python':[1,2,3,4,5,6,7,8,9,10,11],
+  'JSON':[5,6,7,9],
+  'OOP':[5,6,7],
+  'APIs':[1,3,9,10],
+  'PDF Processing':[4,10]
+};
+const SK_NOTE={
+  'C++':'Currently learning and using C++ through my college coursework.',
+  'HTML':'Part of my web development learning — this site is built with it.',
+  'CSS':'Part of my web development learning — this site is built with it.',
+  'JavaScript':'Part of my web development learning — this site is built with it.',
+  'Git':'Part of my development tools.',
+  'GitHub':'Where all my projects live.',
+  'VS Code':'Part of my development tools.'
+};
+document.querySelectorAll('.chip').forEach(ch=>ch.onclick=()=>{
+  document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));ch.classList.add('on');
+  const s=ch.dataset.skill,out=$('skillOut');
+  if(SK[s]){
+    out.innerHTML=`<h3>${esc(s)}</h3><p>Used in ${SK[s].length} project${SK[s].length>1?'s':''} — click to jump:</p><div class="pl">`+
+      SK[s].map(n=>`<button class="pill" data-p="${n}">${esc(PROJ[n-1].dataset.name)}</button>`).join('')+`</div>`;
+    out.querySelectorAll('.pill').forEach(p=>p.onclick=()=>showProject(+p.dataset.p));
+  }else out.innerHTML=`<h3>${esc(s)}</h3><p>${SK_NOTE[s]}</p>`;
+});
+
+/* ---------- learning checkboxes ---------- */
+document.querySelectorAll('.todo').forEach(t=>t.onclick=()=>t.classList.toggle('done'));
+
+/* ---------- contact ---------- */
+$('copyMail').onclick=()=>copy(LINKS.email,'Email copied!');
+$('cform').onsubmit=async e=>{
+  e.preventDefault();
+  if($('choney').value)return; // spam trap
+  const n=$('cname').value.trim(),em=$('cemail').value.trim(),m=$('cmsg').value.trim();
+  const btn=$('csend'),st=$('cstatus');
+  btn.disabled=true;btn.textContent='Sending…';st.style.color='';
+  try{
+    const r=await fetch('https://formsubmit.co/ajax/'+LINKS.email,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({name:n,email:em,message:m,_subject:'Portfolio message from '+n,_replyto:em,_template:'table',_captcha:'false'})
+    });
+    const d=await r.json().catch(()=>({}));
+    if(!r.ok||d.success==='false'||d.success===false)throw new Error(d.message||'failed');
+    st.textContent='✔ Sent! Thanks '+n+' — I\'ll get back to you.';st.style.color='var(--mint)';
+    $('cform').reset();toast('Message sent ✔');
+  }catch(err){
+    st.innerHTML='Couldn\'t send right now. <span class="lnk" id="cfallback" style="color:var(--amber);cursor:pointer;text-decoration:underline">Open in your email app instead</span>';
+    st.style.color='var(--coral)';
+    $('cfallback').onclick=()=>{location.href=`mailto:${LINKS.email}?subject=${encodeURIComponent('Hello from '+n)}&body=${encodeURIComponent(m+'\n\n— '+n+' ('+em+')')}`};
+  }
+  btn.disabled=false;btn.textContent='Send ↗';
+};
+
+/* ---------- themes ---------- */
+function setTheme(t){
+  document.documentElement.dataset.theme=t;
+  try{localStorage.setItem('pg-theme',t)}catch(e){}
+}
+function nextTheme(){
+  const i=(THEMES.indexOf(document.documentElement.dataset.theme)+1)%THEMES.length;
+  setTheme(THEMES[i]);toast('Theme: '+THEMES[i]);
+}
+try{const t=localStorage.getItem('pg-theme');if(THEMES.includes(t))setTheme(t)}catch(e){}
+['themeBtn','sTheme','qTheme'].forEach(id=>$(id).onclick=nextTheme);
+
+/* ---------- terminal ---------- */
+const term=$('term'),tout=$('tout'),tinp=$('tinp');
+let hist=[],hi=0;
+function toggleTerm(force){
+  const on=force??!term.classList.contains('on');
+  term.classList.toggle('on',on);
+  if(on){tinp.focus();if(!tout.children.length)boot()}
+}
+function boot(){
+  line('<span class="s">Welcome to Pranjal\'s portfolio terminal.</span>');
+  line('Type <span class="n">help</span> to see what you can do.');
+}
+function line(h){const d=document.createElement('div');d.className='o';d.innerHTML=h;tout.appendChild(d);tout.scrollTop=tout.scrollHeight}
+const projName=n=>PROJ[n-1].dataset.name;
+const CMD={
+  help(){line(`<span class="n">Commands</span>
+  help · ls · whoami · neofetch · skills · learning
+  projects · project &lt;1-${PROJ.length}&gt; · journey · academics · goals · contact
+  open &lt;file&gt; · github · linkedin · instagram · email
+  theme &lt;${THEMES.join('|')}&gt; · clear · exit
+  <span class="dim">Tab autocompletes, ↑ ↓ shows history. There may be a secret or two…</span>`)},
+  ls(){line(FILES.map(f=>`<span style="color:${f.c}">${f.name}</span>`).join('  '))},
+  whoami(){line('Pranjal Gupta — Computer Science student. Programming &amp; Technology. Python • C++. AI • Development • Games. Learn → Build → Improve.')},
+  neofetch(){line(`<span class="s">pranjal</span>@<span class="s">portfolio</span>
+-------------------
+<span class="n">Name</span>      Pranjal Gupta
+<span class="n">Field</span>     Computer Science
+<span class="n">Languages</span> Python • C++
+<span class="n">Focus</span>     Programming / C++ / Python / AI / Development
+<span class="n">Projects</span>  ${PROJ.length}
+<span class="n">Status</span>    Learning → Building → Improving
+<span class="n">Theme</span>     ${document.documentElement.dataset.theme}`)},
+  skills(){line(`<span class="n">Programming</span>        Python, C++
+<span class="n">Web Development</span>    HTML, CSS, JavaScript
+<span class="n">Development Tools</span>  Git, GitHub, VS Code
+<span class="n">Other</span>              JSON, PDF Processing, OOP, APIs`)},
+  learning(){line(`[ ] C++ &amp; Data Structures
+[ ] Artificial Intelligence
+[ ] Web Development
+[ ] Development &amp; Engineering Tools`)},
+  projects(){line(PROJ.map(p=>`<span class="n">${String(p.dataset.n).padStart(2,'0')}</span> ${esc(p.dataset.name)}`).join('\n')+'\n<span class="dim">run: project &lt;number&gt;</span>')},
+  project(a){
+    const n=+a[0];
+    if(!n||n<1||n>PROJ.length)return line(`usage: project &lt;1-${PROJ.length}&gt;`);
+    const p=PROJ[n-1],u=p.querySelector('.plink').href;
+    line(`<span class="n">${esc(p.dataset.name)}</span>\n${esc(p.querySelector('p').textContent)}\n<span class="lnk" data-url="${u}">${u}</span>`);
+    showProject(n);
+  },
+  journey(){line(`Java → Python → Practical Python → C++ → AI &amp; Development`)},
+  academics(){line(`Class 10   2024   94.4%
+Class 12   2026   90%
+JEE Main   2026   84%ile`)},
+  goals(){line(`01 Strong Programming\n02 AI &amp; Software\n03 Build Bigger Projects`)},
+  contact(){line(`GitHub     <span class="lnk" data-url="${LINKS.github}">${LINKS.github}</span>
+Instagram  <span class="lnk" data-url="${LINKS.instagram}">${LINKS.instagram}</span>
+Email      <span class="lnk" data-url="mailto:${LINKS.email}">${LINKS.email}</span>`)},
+  open(a){
+    const k=(a[0]||'').toLowerCase();
+    const f=FILES.find(f=>f.id===k||f.name===k);
+    if(f){go(f.id);line('opened '+f.name)}else line('no such file. try: ls');
+  },
+  github(){window.open(LINKS.github,'_blank','noopener');line('opening GitHub…')},
+  linkedin(){window.open(LINKS.linkedin,'_blank','noopener');line('opening LinkedIn…')},
+  instagram(){window.open(LINKS.instagram,'_blank','noopener');line('opening Instagram…')},
+  email(){copy(LINKS.email,'Email copied!');line('copied '+LINKS.email)},
+  theme(a){
+    if(!THEMES.includes(a[0]))return line('themes: '+THEMES.join(', '));
+    setTheme(a[0]);line('theme → '+a[0]);
+  },
+  clear(){tout.innerHTML=''},
+  exit(){toggleTerm(false)},
+  sudo(a){
+    if(a.join(' ')==='hire-me'){line('<span class="s">[sudo] permission granted ✔</span>\nPranjal is ready to learn, build and improve. Redirecting to contact…');setTimeout(()=>go('contact'),900)}
+    else line('pranjal is not in the sudoers file. This incident will be reported. (jk)')
+  },
+  hello(){line('Hi there! 👋')},
+  matrix(){setTheme('matrix');line('Wake up…')}
+};
+tout.addEventListener('click',e=>{const l=e.target.closest('.lnk');if(l)window.open(l.dataset.url,'_blank','noopener')});
+function exec(raw){
+  const parts=raw.trim().split(/\s+/),cmd=parts.shift().toLowerCase();
+  if(!cmd)return;
+  const d=document.createElement('div');d.className='o';d.innerHTML='<span class="s">$</span> ';d.appendChild(document.createTextNode(raw));
+  tout.appendChild(d);
+  if(CMD[cmd])CMD[cmd](parts);else line(`command not found: ${esc(cmd)} — try <span class="n">help</span>`);
+  tout.scrollTop=tout.scrollHeight;
+}
+tinp.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){const v=tinp.value;if(v.trim()){hist.push(v);hi=hist.length}exec(v);tinp.value=''}
+  else if(e.key==='ArrowUp'){e.preventDefault();if(hi>0){hi--;tinp.value=hist[hi]}}
+  else if(e.key==='ArrowDown'){e.preventDefault();if(hi<hist.length-1){hi++;tinp.value=hist[hi]}else{hi=hist.length;tinp.value=''}}
+  else if(e.key==='Tab'){
+    e.preventDefault();
+    const v=tinp.value,sp=v.split(/\s+/),last=sp[sp.length-1].toLowerCase();
+    const pool=sp.length===1?Object.keys(CMD):[...FILES.map(f=>f.id),...FILES.map(f=>f.name),...THEMES];
+    const m=pool.filter(x=>x.startsWith(last));
+    if(m.length===1){sp[sp.length-1]=m[0];tinp.value=sp.join(' ')}
+    else if(m.length>1)line(m.join('  '));
+  }
+});
+term.addEventListener('mousedown',e=>{if(!e.target.closest('button')&&e.target!==tinp)setTimeout(()=>tinp.focus(),0)});
+$('tclose').onclick=()=>toggleTerm(false);
+$('sTerm').onclick=()=>toggleTerm();
+$('qTerm').onclick=()=>toggleTerm(true);
+$('runBtn').onclick=()=>{
+  toggleTerm(true);
+  const f=byId[active];exec(f.run);
+};
+
+/* ---------- command palette ---------- */
+const pal=$('pal'),pin=$('pin'),plist=$('plist');
+const ITEMS=[
+  ...FILES.map(f=>({name:f.name,c:f.c,run:()=>go(f.id)})),
+  {name:'> toggle terminal',c:'#fff',run:()=>toggleTerm()},
+  {name:'> next theme',c:'#fff',run:nextTheme},
+  {name:'> open GitHub',c:'#fff',run:()=>window.open(LINKS.github,'_blank','noopener')},
+  {name:'> copy email',c:'#fff',run:()=>copy(LINKS.email,'Email copied!')}
+];
+let sel=0,shown=ITEMS;
+function drawPal(){
+  const q=pin.value.toLowerCase();
+  shown=ITEMS.filter(i=>i.name.toLowerCase().includes(q));
+  sel=Math.min(sel,Math.max(shown.length-1,0));
+  plist.innerHTML='';
+  shown.forEach((it,i)=>{
+    const b=document.createElement('button');
+    b.className='pi'+(i===sel?' sel':'');
+    b.innerHTML=`<b style="background:${it.c}"></b>${esc(it.name)}`;
+    b.onclick=()=>{closePal();it.run()};
+    plist.appendChild(b);
+  });
+}
+function openPal(){pal.classList.add('on');pin.value='';sel=0;drawPal();pin.focus()}
+function closePal(){pal.classList.remove('on')}
+$('openPal').onclick=openPal;$('sPal').onclick=openPal;
+pal.addEventListener('mousedown',e=>{if(e.target===pal)closePal()});
+pin.addEventListener('input',()=>{sel=0;drawPal()});
+addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();pal.classList.contains('on')?closePal():openPal();return}
+  if((e.ctrlKey||e.metaKey)&&(e.key==='`'||e.code==='Backquote')){e.preventDefault();toggleTerm();return}
+  if(!pal.classList.contains('on'))return;
+  if(e.key==='Escape')closePal();
+  if(e.key==='ArrowDown'){e.preventDefault();sel=Math.min(sel+1,shown.length-1);drawPal()}
+  if(e.key==='ArrowUp'){e.preventDefault();sel=Math.max(sel-1,0);drawPal()}
+  if(e.key==='Enter'&&shown[sel]){const it=shown[sel];closePal();it.run()}
+});
+
+/* ---------- live GitHub numbers (falls back silently) ---------- */
+try{
+  fetch('https://api.github.com/users/PRANJALxDEVxAI').then(r=>r.ok?r.json():null).then(d=>{
+    if(d&&typeof d.public_repos==='number'){$('stRepos').textContent=d.public_repos;$('stFol').textContent=d.followers}
+  }).catch(()=>{});
+}catch(e){}
+
+/* ---------- boot sequence ---------- */
+(function(){
+  const boot=$('boot'),pre=$('bootText');
+  let seen=false;try{seen=sessionStorage.getItem('pg-boot')}catch(e){}
+  const end=()=>{boot.classList.add('off');try{sessionStorage.setItem('pg-boot','1')}catch(e){}};
+  if(seen){boot.style.display='none';return}
+  const L=['[ ok ] loading profile … Pranjal Gupta','[ ok ] mounting projects … '+PROJ.length+' found','[ ok ] compiling skills … Python • C++','[ ok ] status … Learning → Building → Improving','','welcome.'];
+  let i=0;pre.innerHTML='';
+  const t=setInterval(()=>{
+    if(i<L.length){pre.innerHTML+=L[i]+'\n';i++}
+    else{clearInterval(t);setTimeout(end,350)}
+  },260);
+  const skip=()=>{clearInterval(t);end()};
+  boot.addEventListener('click',skip);
+  pre.insertAdjacentHTML('afterend','<small>click or press any key to skip</small>');
+  addEventListener('keydown',skip,{once:true});
+})();
+
+/* ---------- start ---------- */
+const h0=location.hash.slice(1);
+if(byId[h0])go(h0);else render();
+</script>
 </body>
-
 </html>
-```
